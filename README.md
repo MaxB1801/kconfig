@@ -4,9 +4,9 @@ kconfig
 # Requirements
 research best input file format - pass as command in running
 
-have file automatically find .kube
+no input file save dir
 
-for rke2 and k3s compatible and other orchestration platform compatible. Use dicts
+for rke2 and k3s compatible and other orchestration platform compatible. Use dicts - e.g cluster type
 
 make linux and .exe compatible
 
