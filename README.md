@@ -30,3 +30,9 @@ then store in compiled file
 
 
 
+# have two commads
+# first command - config will runn config script
+# second command - edit-config will open txt edito to edit the config file
+# config file - have the dir to save the config
+#  and the node ip, uisername, password and cluster name
+# delete config before creating
