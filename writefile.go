@@ -6,16 +6,23 @@ import (
 	"os"
 )
 
-func createFile(config Config, filepath string) {
-	f, err := os.OpenFile(filepath, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+func createFile(config []byte, filepath string) {
+	// Delete the file if it exists
+	if err := os.Remove(filepath); err != nil && !os.IsNotExist(err) {
+		log.Fatalf("Error deleting file: %v", err)
+	}
+
+	// Create a new file
+	file, err := os.Create(filepath)
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer file.Close()
 
-	n, err := f.WriteString(fmt.Sprintf("\n%s", config.Clusters[0].ServerContext.Server))
+	_, err = file.Write(config)
 	if err != nil {
-		log.Fatal("Error Appending to File", n, err)
+		fmt.Printf("error writing to file: %v\n", err)
+		return
 	}
 
-	f.Close()
 }
