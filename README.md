@@ -1,6 +1,9 @@
 # kconfig
 kconfig
 
+# resources used
+https://stackoverflow.com/questions/53256373/sending-file-over-ssh-in-go
+
 # Requirements
 research best input file format - pass as command in running
 
@@ -22,12 +25,14 @@ add to struct array
 then store in compiled file
 
 # use yaml format
+save to - 
 
 - name: dev
+    type: rke2 - dictionary to map for config dir
     ip: 
     username:
     password:
-
+- name
 
 
 # have two commads
