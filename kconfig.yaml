@@ -4,12 +4,12 @@ savedir:
     - "C:\\Users\\Max Brown\\Documents\\tmp"
 clusters:
   - name: "firsty-cluster"
-    type: rke2
+    type: "/etc/rke2/rke2.yaml"
     ip: "192.168.1.119"
     username: "prod"
     password: "password"
   - name: "second-cluster"
-    type: k3s
+    type: "/etc/k3s/k3s.yaml"
     ip: "192.168.1.119"
     username: "prod"
     password: "password"

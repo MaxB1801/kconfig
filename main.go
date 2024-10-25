@@ -94,7 +94,7 @@ func main() {
 
 	var configArray [][]byte
 	for _, cluster := range kconfig.Clusters {
-		configArray = append(configArray, sshclient(cluster.Username, cluster.Password, cluster.IP, "/etc/rke2/rke2.yaml"))
+		configArray = append(configArray, sshclient(cluster.Username, cluster.Password, cluster.IP, cluster.Type))
 	}
 
 	saveData := formatKConfig(configArray, kconfig)
