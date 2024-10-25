@@ -41,3 +41,5 @@ save to -
 # config file - have the dir to save the config
 #  and the node ip, uisername, password and cluster name
 # delete config before creating
+
+# file permissions means i cant one code for both wsl and linux. will make two, one for both

@@ -1,9 +1,9 @@
 savedir:
   filepaths:
     - "C:\\Users\\Max Brown\\Documents\\Git\\kconfig"
-    - "\\wsl$\\Ubuntu\\mnt\\c\\Users\\Max Brown\\Documents\\Git\\kconfig"
+    - "\\\\wsl$\\Ubuntu\\mnt\\c\\Users\\Max Brown\\Documents\\Git\\kconfig"
 clusters:
-  - name: "first-cluster"
+  - name: "firsty-cluster"
     type: rke2
     ip: "192.168.1.119"
     username: "prod"

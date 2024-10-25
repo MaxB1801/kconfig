@@ -62,6 +62,16 @@ type User struct {
 }
 
 func main() {
+
+	if len(os.Args) > 1 {
+		if os.Args[1] != "-edit" {
+			fmt.Println("Use -edit to edit the kconfig.yaml")
+			return
+		}
+		openEditor("kconfig.yaml")
+		return
+	}
+
 	filedata, err := os.ReadFile("kconfig.yaml")
 	if err != nil {
 		log.Fatal("Error Reading kconfig.yaml")
@@ -78,38 +88,8 @@ func main() {
 		configArray = append(configArray, sshclient(cluster.Username, cluster.Password, cluster.IP, "/etc/rke2/rke2.yaml"))
 	}
 
-	// Initialize the slice to hold the unmarshaled Configs
-	ServerConfigs := make([]Config, len(configArray))
-	for n, config := range configArray {
-		err = yaml.Unmarshal(config, &ServerConfigs[n])
-		if err != nil {
-			log.Fatal("Error Parsing SSH Config")
-		}
-	}
+	saveData := formatKConfig(configArray, kconfig)
 
-	// combine the configs and the marshal to file using the yaml package
-	var finalConfig Config
-	finalConfig.CurrentContext = kconfig.Clusters[0].Name
-	finalConfig.CurrentContext = kconfig.Clusters[0].Name
-	for n, config := range ServerConfigs {
-		config.Clusters[0].Name = kconfig.Clusters[n].Name
-		// config.Clusters[0].clusters.f
-		finalConfig.Clusters = append(finalConfig.Clusters, config.Clusters[0])
-		config.Contexts[0].Context.Cluster = kconfig.Clusters[n].Name
-		config.Contexts[0].Context.User = kconfig.Clusters[n].Name
-		config.Contexts[0].Name = kconfig.Clusters[n].Name
-		finalConfig.Contexts = append(finalConfig.Contexts, config.Contexts[0])
-		config.Users[0].Name = kconfig.Clusters[n].Name
-		finalConfig.Users = append(finalConfig.Users, config.Users[0])
-	}
-
-	// Marshal the config to YAML
-	saveData, err := yaml.Marshal(finalConfig)
-	if err != nil {
-		fmt.Printf("error: %v\n", err)
-		return
-	}
-
-	createFile(saveData, filepath.Join(kconfig.Savedir.Filepaths[0], "config"))
+	createFile(saveData, filepath.Join(kconfig.Savedir.Filepaths[1], "config"))
 
 }
