@@ -1,7 +1,7 @@
 savedir:
   filepaths:
     - "C:\\Users\\Max Brown\\Documents\\Git\\kconfig"
-    - "\\\\wsl$\\Ubuntu\\mnt\\c\\Users\\Max Brown\\Documents\\Git\\kconfig"
+    - "C:\\Users\\Max Brown\\Documents\\tmp"
 clusters:
   - name: "firsty-cluster"
     type: rke2

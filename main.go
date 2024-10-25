@@ -72,7 +72,16 @@ func main() {
 		return
 	}
 
-	filedata, err := os.ReadFile("kconfig.yaml")
+	// Get the executable's directory
+	exePath, err := os.Executable()
+	if err != nil {
+		log.Fatal(err) // Handle the error if getting the executable path fails
+	}
+
+	// Get the directory of the executable
+	exeDir := filepath.Dir(exePath)
+
+	filedata, err := os.ReadFile(filepath.Join(exeDir, "kconfig.yaml"))
 	if err != nil {
 		log.Fatal("Error Reading kconfig.yaml")
 	}
@@ -90,6 +99,7 @@ func main() {
 
 	saveData := formatKConfig(configArray, kconfig)
 
-	createFile(saveData, filepath.Join(kconfig.Savedir.Filepaths[1], "config"))
-
+	for _, path := range kconfig.Savedir.Filepaths {
+		createFile(saveData, filepath.Join(path, "config"))
+	}
 }
