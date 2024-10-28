@@ -11,15 +11,6 @@ import (
 
 func main() {
 
-	if len(os.Args) > 1 {
-		if os.Args[1] != "-edit" {
-			fmt.Println("Use -edit to edit the kconfig.yaml")
-			return
-		}
-		openEditor("kconfig.yaml")
-		return
-	}
-
 	// Get the executable's directory
 	exePath, err := os.Executable()
 	if err != nil {
@@ -28,6 +19,15 @@ func main() {
 
 	// Get the directory of the executable
 	exeDir := filepath.Dir(exePath)
+
+	if len(os.Args) > 1 {
+		if os.Args[1] != "-edit" {
+			fmt.Println("Use -edit to edit the kconfig.yaml")
+			return
+		}
+		openEditor(filepath.Join(exeDir, "kconfig.yaml"))
+		return
+	}
 
 	filedata, err := os.ReadFile(filepath.Join(exeDir, "kconfig.yaml"))
 	if err != nil {

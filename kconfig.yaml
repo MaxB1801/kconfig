@@ -1,15 +1,10 @@
 savedir:
   filepaths:
-    - "C:\\Users\\Max Brown\\Documents\\Git\\kconfig"
-    - "C:\\Users\\Max Brown\\Documents\\tmp"
+    - "C:\\Users\\MaxBrown\\.kube"
 clusters:
-  - name: "firsty-cluster"
-    type: "/etc/rke2/rke2.yaml"
-    ip: "192.168.1.119"
-    username: "prod"
-    password: "password"
-  - name: "second-cluster"
-    type: "/etc/k3s/k3s.yaml"
-    ip: "192.168.1.119"
-    username: "prod"
-    password: "password"
+  - name: "dev"
+    type: "/etc/rancher/rke2/rke2.yaml"
+    ip: ""
+    username: ""
+    password: ""
+

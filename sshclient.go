@@ -33,7 +33,7 @@ func sshclient(username, password, ip, path string) []byte {
 		log.Fatal(err)
 	}
 	// Define the command to read the remote file
-	cmd := fmt.Sprintf("cat %s", path)
+	cmd := fmt.Sprintf("sudo cat %s", path)
 
 	if err := session.Start(cmd); err != nil {
 		log.Fatal(err)
