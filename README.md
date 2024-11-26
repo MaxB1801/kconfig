@@ -14,3 +14,13 @@ Use kconfig -edit to edit the config.yaml which configures the code
 
 # New features
 Supports Linux with nano
+
+# Set Up Windows
+Copy content into local directory, and add the directory to your path    
+Edit contents of kconfig.yaml to your desired state    
+
+# Set Up Linux
+Copy contents into local directory  
+Use command 'nano ~/.bashrc'  
+Append to the end of the file "alias kconfig='<path_to_kconfig_folder>/kconfig'  
+Edit contents of kconfig.yaml to your desired state 
