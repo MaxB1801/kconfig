@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"runtime"
 )
@@ -16,7 +17,19 @@ func openEditor(fileName string) error {
 	case "darwin": // macOS
 		cmd = exec.Command("open", fileName)
 	case "linux":
-		cmd = exec.Command("nano", fileName) // Using nano instead of xdg-open
+		cmd := exec.Command("bash", "-c", fmt.Sprintf("nano %s", fileName))
+		// Attach the terminal's input/output to the command
+		cmd.Stdin = os.Stdin
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+
+		// Run the editor and wait for it to complete
+		err := cmd.Run()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error opening nano: %v\n", err)
+			os.Exit(1)
+		}
+		return nil
 	default:
 		return fmt.Errorf("unsupported operating system")
 	}
